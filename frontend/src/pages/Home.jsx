@@ -13,6 +13,7 @@ const Home = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const selectedCategory = searchParams.get('category') || 'All';
   const searchQuery = searchParams.get('search') || '';
 
@@ -53,8 +54,13 @@ const Home = () => {
     <div className="home">
       <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
       <div className="home-container">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <main className="main-content">
+        <Sidebar 
+          isOpen={sidebarOpen} 
+          onClose={() => setSidebarOpen(false)}
+          isCollapsed={sidebarCollapsed}
+          onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        />
+        <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
           <div className="filter-buttons">
             {categories.map((category) => (
               <button

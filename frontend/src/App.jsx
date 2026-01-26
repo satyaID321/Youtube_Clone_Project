@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/video/:id" element={<VideoPlayer />} />
+          <Route path="/channel" element={<Channel />} />
           <Route path="/channel/:id" element={<Channel />} />
         </Routes>
       </Router>

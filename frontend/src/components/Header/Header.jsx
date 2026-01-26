@@ -54,7 +54,10 @@ const Header = ({ onMenuClick }) => {
       <div className="header-right">
         {user ? (
           <div className="user-menu">
-            <Link to={`/channel/${user.channels?.[0] || ''}`} className="user-avatar">
+            <Link 
+              to={user.channels?.[0] ? `/channel/${user.channels[0]}` : '/channel'} 
+              className="user-avatar"
+            >
               <img src={user.avatar} alt={user.username} />
             </Link>
             <div className="user-dropdown">

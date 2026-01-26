@@ -28,8 +28,11 @@ const Channel = () => {
       fetchChannel();
     } else if (user) {
       fetchUserChannel();
+    } else {
+      // No user, redirect to sign in
+      navigate('/signin');
     }
-  }, [id, user]);
+  }, [id, user, navigate]);
 
   const fetchChannel = async () => {
     try {
@@ -49,8 +52,12 @@ const Channel = () => {
       setChannel(response.data);
       setVideos(response.data.videos || []);
       navigate(`/channel/${response.data._id}`, { replace: true });
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching user channel:', error);
+      // User doesn't have a channel yet
+      setChannel(null);
+      setVideos([]);
       setLoading(false);
     }
   };

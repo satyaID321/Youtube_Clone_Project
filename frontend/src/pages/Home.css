@@ -12,6 +12,11 @@
   flex: 1;
   padding: 24px;
   margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 0;
 }
 
 .filter-buttons {
@@ -65,8 +70,16 @@
 }
 
 @media (min-width: 1024px) {
+  .home-container {
+    position: relative;
+  }
+
   .main-content {
     margin-left: 240px;
+  }
+
+  .main-content.sidebar-collapsed {
+    margin-left: 72px;
   }
 }
 
