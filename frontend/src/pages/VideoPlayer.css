@@ -1,0 +1,295 @@
+.video-player-page {
+  min-height: 100vh;
+  background-color: #0f0f0f;
+}
+
+.video-player-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.video-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.video-info-section {
+  color: #fff;
+}
+
+.video-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.video-meta-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #303030;
+}
+
+.video-stats {
+  display: flex;
+  gap: 8px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.video-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #272727;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #3d3d3d;
+}
+
+.channel-info {
+  margin-bottom: 16px;
+}
+
+.channel-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.channel-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.channel-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.channel-subscribers {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.video-description {
+  padding: 16px;
+  background-color: #272727;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.comments-section {
+  color: #fff;
+}
+
+.comments-section h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.comment-form {
+  margin-bottom: 32px;
+}
+
+.comment-input-wrapper {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #303030;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.comment-input:focus {
+  border-bottom-color: #3ea6ff;
+}
+
+.comment-submit-btn {
+  margin-left: 56px;
+  padding: 10px 16px;
+  background-color: #3ea6ff;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.comment-submit-btn:hover {
+  background-color: #2d8ce6;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 16px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-author {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.comment-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.comment-edit-btn,
+.comment-delete-btn {
+  font-size: 12px;
+  color: #aaa;
+  padding: 4px 0;
+}
+
+.comment-edit-btn:hover {
+  color: #3ea6ff;
+}
+
+.comment-delete-btn:hover {
+  color: #ff4444;
+}
+
+.comment-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-edit-input {
+  padding: 8px;
+  background-color: #272727;
+  border: 1px solid #404040;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.comment-edit-input:focus {
+  border-color: #3ea6ff;
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.comment-save-btn {
+  padding: 6px 12px;
+  background-color: #3ea6ff;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.comment-cancel-btn {
+  padding: 6px 12px;
+  background-color: #404040;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #aaa;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .video-player-container {
+    padding: 16px;
+  }
+
+  .video-title {
+    font-size: 18px;
+  }
+
+  .video-meta-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .video-actions {
+    width: 100%;
+    justify-content: space-around;
+  }
+}
