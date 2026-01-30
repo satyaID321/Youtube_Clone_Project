@@ -38,7 +38,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggleCollapse }) => {
         <div className="sidebar-overlay" onClick={onClose} />
       )}
       <aside className={`sidebar ${isOpen || isDesktop ? 'open' : ''} ${isCollapsed && isDesktop ? 'collapsed' : ''}`}>
-        {isDesktop && (
+        {/* {isDesktop && (
           <button className="sidebar-toggle" onClick={onToggleCollapse}>
             {isCollapsed ? (
               <svg viewBox="0 0 24 24" width="20" height="20">
@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, onClose, isCollapsed, onToggleCollapse }) => {
               </svg>
             )}
           </button>
-        )}
+        )} */}
         <div className="sidebar-content">
           {menuItems.map((item, index) => (
             <Link
