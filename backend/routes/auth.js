@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign(
       { userId: user._id },
-      process.env.JWT_SECRET || 'your_secret_key_here',
+      process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
 
@@ -98,7 +98,7 @@ router.get('/me', async (req, res) => {
       return res.status(401).json({ message: 'Authentication required' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your_secret_key_here');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.userId)
       .select('-password')
       .populate('channels');
