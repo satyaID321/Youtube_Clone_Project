@@ -5,7 +5,7 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get comments for a video
+// get comments for a video
 router.get('/video/:videoId', async (req, res) => {
   try {
     const comments = await Comment.find({ videoId: req.params.videoId })
@@ -18,7 +18,7 @@ router.get('/video/:videoId', async (req, res) => {
   }
 });
 
-// Create comment (protected)
+// creating comment
 router.post('/', authenticate, async (req, res) => {
   try {
     const { videoId, text } = req.body;
@@ -27,7 +27,7 @@ router.post('/', authenticate, async (req, res) => {
       return res.status(400).json({ message: 'Video ID and text are required' });
     }
 
-    // Verify video exists
+    // verifing video exists
     const video = await Video.findById(videoId);
     if (!video) {
       return res.status(404).json({ message: 'Video not found' });
@@ -50,7 +50,7 @@ router.post('/', authenticate, async (req, res) => {
   }
 });
 
-// Update comment (protected)
+// update comment
 router.put('/:id', authenticate, async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);
@@ -80,7 +80,7 @@ router.put('/:id', authenticate, async (req, res) => {
   }
 });
 
-// Delete comment (protected)
+// delete comment
 router.delete('/:id', authenticate, async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);

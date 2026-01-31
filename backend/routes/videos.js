@@ -5,7 +5,7 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all videos (with optional search and filter)
+// get all videos (with optional search and filter)
 router.get('/', async (req, res) => {
   try {
     const { search, category } = req.query;
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get single video
+// get single video
 router.get('/:id', async (req, res) => {
   try {
     const video = await Video.findById(req.params.id)
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Video not found' });
     }
 
-    // Increment views
+    // increment views
     video.views += 1;
     await video.save();
 
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create video (protected)
+// create video (protected)
 router.post('/', authenticate, async (req, res) => {
   try {
     const { title, description, videoUrl, thumbnailUrl, category, channelId } = req.body;
@@ -60,7 +60,7 @@ router.post('/', authenticate, async (req, res) => {
       return res.status(400).json({ message: 'Required fields are missing' });
     }
 
-    // Verify channel ownership
+    // verify channel ownership
     const channel = await Channel.findById(channelId);
     if (!channel) {
       return res.status(404).json({ message: 'Channel not found' });
@@ -82,7 +82,7 @@ router.post('/', authenticate, async (req, res) => {
 
     await video.save();
 
-    // Add video to channel
+    // add video to channel
     channel.videos.push(video._id);
     await channel.save();
 
@@ -96,7 +96,7 @@ router.post('/', authenticate, async (req, res) => {
   }
 });
 
-// Update video (protected)
+// update video (protected)
 router.put('/:id', authenticate, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
@@ -105,7 +105,7 @@ router.put('/:id', authenticate, async (req, res) => {
       return res.status(404).json({ message: 'Video not found' });
     }
 
-    // Check ownership
+    // check ownership
     if (video.uploader.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'You do not own this video' });
     }
@@ -129,7 +129,7 @@ router.put('/:id', authenticate, async (req, res) => {
   }
 });
 
-// Delete video (protected)
+// delete video (protected)
 router.delete('/:id', authenticate, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
@@ -138,12 +138,12 @@ router.delete('/:id', authenticate, async (req, res) => {
       return res.status(404).json({ message: 'Video not found' });
     }
 
-    // Check ownership
+    // check ownership
     if (video.uploader.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'You do not own this video' });
     }
 
-    // Remove from channel
+    // remove from channel
     const channel = await Channel.findById(video.channelId);
     if (channel) {
       channel.videos = channel.videos.filter(
@@ -160,7 +160,7 @@ router.delete('/:id', authenticate, async (req, res) => {
   }
 });
 
-// Like video
+// like video
 router.post('/:id/like', authenticate, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
@@ -177,7 +177,7 @@ router.post('/:id/like', authenticate, async (req, res) => {
   }
 });
 
-// Dislike video
+// dislike video
 router.post('/:id/dislike', authenticate, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);

@@ -5,7 +5,7 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all channels
+// get all channels
 router.get('/', async (req, res) => {
   try {
     const channels = await Channel.find()
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get single channel
+// get single channel
 router.get('/:id', async (req, res) => {
   try {
     const channel = await Channel.findById(req.params.id)
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get channel by owner
+// get channel by owner
 router.get('/owner/:userId', async (req, res) => {
   try {
     const channel = await Channel.findOne({ owner: req.params.userId })
@@ -64,7 +64,7 @@ router.get('/owner/:userId', async (req, res) => {
   }
 });
 
-// Create channel (protected)
+// create chanel
 router.post('/', authenticate, async (req, res) => {
   try {
     const { channelName, description, channelBanner } = req.body;
@@ -73,7 +73,7 @@ router.post('/', authenticate, async (req, res) => {
       return res.status(400).json({ message: 'Channel name is required' });
     }
 
-    // Check if user already has a channel
+    // check if user already has channel
     const existingChannel = await Channel.findOne({ owner: req.user._id });
     if (existingChannel) {
       return res.status(400).json({ message: 'You already have a channel' });
@@ -88,7 +88,7 @@ router.post('/', authenticate, async (req, res) => {
 
     await channel.save();
 
-    // Add channel to user
+    // add channel to user
     req.user.channels.push(channel._id);
     await req.user.save();
 
@@ -101,7 +101,7 @@ router.post('/', authenticate, async (req, res) => {
   }
 });
 
-// Update channel (protected)
+// update the channel
 router.put('/:id', authenticate, async (req, res) => {
   try {
     const channel = await Channel.findById(req.params.id);

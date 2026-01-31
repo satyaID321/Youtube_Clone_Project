@@ -4,12 +4,12 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Register
+// register
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Validation
+    // validation
     if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'Please enter a valid email' });
     }
 
-    // Check if user exists
+    // to check if the user exists
     const existingUser = await User.findOne({
       $or: [{ email }, { username }]
     });
@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Create user
+    // create user
     const user = new User({ username, email, password });
     await user.save();
 
@@ -49,7 +49,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
+// login
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -89,7 +89,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Get current user
+// get current user
 router.get('/me', async (req, res) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
